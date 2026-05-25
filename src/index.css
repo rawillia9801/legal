@@ -729,22 +729,34 @@ svg {
   margin: 0 -11px 9px;
 }
 
-.article-image.capitol {
-  background-image: linear-gradient(rgba(4, 6, 5, 0.12), rgba(4, 6, 5, 0.25)), url("/assets/hero-capitol.jpg");
+.article-image.licenses {
+  background-image: linear-gradient(rgba(4, 6, 5, 0.06), rgba(4, 6, 5, 0.25)), url("/assets/news-licensing.jpg");
   background-position: right center;
 }
 
-.article-image.cultivation {
-  background-image:
-    linear-gradient(135deg, rgba(9, 29, 16, 0.38), rgba(7, 13, 9, 0.55)),
-    repeating-linear-gradient(90deg, transparent 0 24px, rgba(255, 255, 255, 0.28) 25px 26px),
-    radial-gradient(ellipse at 50% 80%, #579e42, #122519 65%);
+.article-image.registration {
+  background-image: linear-gradient(90deg, rgba(5, 8, 6, 0.3), rgba(5, 8, 6, 0.06)), url("/assets/news-registration.jpg");
+  background-position: center;
 }
 
-.article-image.city {
-  background-image:
-    linear-gradient(0deg, rgba(7, 13, 9, 0.75), transparent),
-    linear-gradient(145deg, #72b4cf 0%, #d6ba75 44%, #19271d 45%);
+.article-image.tax {
+  background-image: linear-gradient(90deg, rgba(5, 8, 6, 0.18), rgba(5, 8, 6, 0.03)), url("/assets/news-tax.jpg");
+  background-position: center right;
+}
+
+.article-image.municipalities {
+  background-image: linear-gradient(0deg, rgba(5, 8, 6, 0.32), rgba(5, 8, 6, 0.06)), url("/assets/news-municipalities.jpg");
+  background-position: center right;
+}
+
+.article-image.products {
+  background-image: linear-gradient(90deg, rgba(5, 8, 6, 0.2), rgba(5, 8, 6, 0.03)), url("/assets/news-products.jpg");
+  background-position: center right;
+}
+
+.article-image.meeting {
+  background-image: linear-gradient(90deg, rgba(5, 8, 6, 0.16), rgba(5, 8, 6, 0.08)), url("/assets/news-meeting.jpg");
+  background-position: center right;
 }
 
 .article-meta {

@@ -60,7 +60,7 @@ const articles = [
     tag: "MEDICAL",
     date: "JAN 08, 2026",
     title: "Alabama issues three medical cannabis dispensary licenses",
-    image: "capitol",
+    image: "licenses",
     intro: "Alabama's medical cannabis program moved closer to patient access when three awarded dispensary licenses were issued in January 2026.",
     sections: [
       ["What happened", "The Alabama Medical Cannabis Commission (AMCC) says it voted to award four dispensary licenses on December 11, 2025. Three of those licenses issued on January 8, 2026, authorizing those licensees to open dispensing sites."],
@@ -77,7 +77,7 @@ const articles = [
     tag: "MEDICAL",
     date: "UPDATED MAY 25, 2026",
     title: "How Alabama patients and caregivers register for medical cannabis",
-    image: "cultivation",
+    image: "registration",
     intro: "AMCC has published registration instructions for patients, caregivers, and physicians as Alabama's medical cannabis system advances.",
     sections: [
       ["Patient pathway", "According to AMCC, a patient must have a qualifying medical condition, receive a recommendation from an Alabama physician certified to recommend medical cannabis, and be registered in the AMCC patient registry system."],
@@ -94,7 +94,7 @@ const articles = [
     tag: "ECONOMICS",
     date: "UPDATED MAY 25, 2026",
     title: "Alabama defines medical cannabis privilege tax obligations",
-    image: "city",
+    image: "tax",
     intro: "Alabama's Department of Revenue has published filing rules for licensed medical cannabis entities operating under the Compassion Act.",
     sections: [
       ["Who must file", "The Alabama Department of Revenue says Section 20-2A-80(b)(1) requires licensed cultivators, processors, dispensaries, secure transporters, testing laboratories, and integrated facilities to file and pay the Medical Cannabis Privilege Tax."],
@@ -111,7 +111,7 @@ const articles = [
     tag: "COMMUNITY",
     date: "UPDATED MAY 25, 2026",
     title: "AMCC lists municipalities for issued dispensing licenses",
-    image: "capitol",
+    image: "municipalities",
     intro: "The commission now identifies Alabama communities where dispensing sites may be located based on licenses issued to date.",
     sections: [
       ["Locations listed by AMCC", "AMCC lists Athens, Attalla, Bessemer, Birmingham, Daphne, Mobile, Montgomery, Oxford, and Talladega as municipalities for dispensing sites based on licenses issued to date."],
@@ -128,7 +128,7 @@ const articles = [
     tag: "MEDICAL",
     date: "UPDATED MAY 25, 2026",
     title: "What medical cannabis products Alabama allows and prohibits",
-    image: "cultivation",
+    image: "products",
     intro: "Alabama's medical cannabis framework permits specific non-smokable forms and prohibits raw plant material and products intended for smoking or vaping.",
     sections: [
       ["Allowed forms", "AMCC lists non-sugar-coated gelatinous cubes or cuboids, lozenges, tablets, capsules, tinctures, topical gels, oils and creams, suppositories, transdermal patches, nebulizers, and liquids or oils for an inhaler as allowed forms."],
@@ -145,7 +145,7 @@ const articles = [
     tag: "LEGISLATIVE",
     date: "JUN 11, 2026",
     title: "AMCC posts June meeting as program oversight continues",
-    image: "capitol",
+    image: "meeting",
     intro: "The state's medical cannabis commission continues public oversight activity as licensing and patient-access implementation proceed.",
     sections: [
       ["Next published meeting", "As of May 25, 2026, the AMCC meetings page lists a June 11, 2026 meeting at 1:00 p.m. and marks the previously listed May 14, 2026 meeting as cancelled."],
