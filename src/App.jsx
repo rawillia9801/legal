@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, NavLink, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import {
   ArrowRight,
   BellRing,
@@ -108,7 +108,7 @@ export default function App() {
         <Route path="resources" element={<ResourcesPage />} />
         <Route path="merch" element={<MerchPage />} />
         <Route path="get-involved" element={<GetInvolvedPage />} />
-        <Route path="shop-merch" element={<MerchPage shop />} />
+        <Route path="shop-merch" element={<Navigate to="/merch" replace />} />
       </Route>
     </Routes>
   );
@@ -143,12 +143,12 @@ function SiteLayout() {
             ))}
             <div className="mobile-actions">
               <Link className="button primary" to="/get-involved">GET INVOLVED</Link>
-              <Link className="button secondary" to="/shop-merch">SHOP MERCH</Link>
+              <Link className="button secondary" to="/merch">SHOP MERCH</Link>
             </div>
           </nav>
           <div className="header-actions">
             <Link className="button primary" to="/get-involved">GET INVOLVED</Link>
-            <Link className="button secondary" to="/shop-merch">SHOP MERCH</Link>
+            <Link className="button secondary" to="/merch">SHOP MERCH</Link>
             <button type="button" className="search-trigger" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Search size={20} /></button>
           </div>
         </div>
@@ -278,7 +278,7 @@ function ArticleCard({ tag, date, title, image }) {
 function MerchPreview() {
   return (
     <section className="merch-preview">
-      <SectionHeading title="LEGALIZE ALABAMA MERCH" sub="SHOW YOUR SUPPORT. WEAR THE MOVEMENT." link="SHOP MERCH" to="/shop-merch" />
+      <SectionHeading title="LEGALIZE ALABAMA MERCH" sub="SHOW YOUR SUPPORT. WEAR THE MOVEMENT." link="SHOP MERCH" to="/merch" />
       <div className="product-grid preview">
         {products.slice(0, 3).map((product) => <ProductCard product={product} key={product.name} />)}
       </div>
@@ -390,12 +390,12 @@ function ResourcesPage() {
   );
 }
 
-function MerchPage({ shop = false }) {
+function MerchPage() {
   const [filter, setFilter] = useState("ALL");
   const displayed = filter === "ALL" ? products : products.filter((product) => product.category === filter);
   return (
     <>
-      <InnerHero eyebrow="WEAR THE MOVEMENT" title={shop ? "Shop Legalize Alabama" : "Legalize Alabama Merch"} intro="Premium campaign goods built to start conversations and show your support for smarter Alabama policy." />
+      <InnerHero eyebrow="WEAR THE MOVEMENT" title="Legalize Alabama Merch" intro="Premium campaign goods built to start conversations and show your support for smarter Alabama policy." />
       <div className="container store-toolbar">
         <div>{["ALL", "APPAREL", "ACCESSORIES", "STICKERS"].map((category) => <button key={category} className={category === filter ? "active" : ""} onClick={() => setFilter(category)}>{category}</button>)}</div>
         <button className="cart"><ShoppingBag size={17} /> CART (0)</button>
