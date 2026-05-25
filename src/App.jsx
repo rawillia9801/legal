@@ -115,11 +115,13 @@ export default function App() {
 }
 
 function SiteLayout() {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   const [showAlert, setShowAlert] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   return (
-    <div className="site">
+    <div className={isHome ? "site home-shell" : "site"}>
       <ScrollToTop />
       {showAlert && (
         <div className="alert-bar">
@@ -177,36 +179,88 @@ function ScrollToTop() {
 function HomePage() {
   return (
     <>
-      <section className="hero">
-        <div className="hero-grid-lines" />
-        <div className="container hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow">SMARTER POLICY. STRONGER ALABAMA.</p>
-            <h1>LEGALIZE IT.<Leaf className="hero-leaf" /><br />FOR ALABAMA.</h1>
-            <p className="hero-points"><span>RECREATIONAL FREEDOM.</span> <span>MEDICAL ACCESS.</span> <strong>ECONOMIC PROSPERITY.</strong></p>
-            <p className="lede">It's time for safe, sensible cannabis policy that supports patients, empowers adults, fuels our economy, and keeps revenue in Alabama.</p>
-            <div className="cta-row">
-              <Link to="/resources" className="button primary">EXPLORE THE BENEFITS <ArrowRight size={16} /></Link>
-              <Link to="/rec-use" className="button secondary"><FileText size={15} /> READ THE PLAN</Link>
+      <ApprovedDesktopHome />
+      <div className="responsive-live-home">
+        <section className="hero">
+          <div className="hero-grid-lines" />
+          <div className="container hero-inner">
+            <div className="hero-copy">
+              <p className="eyebrow">SMARTER POLICY. STRONGER ALABAMA.</p>
+              <h1>LEGALIZE IT.<Leaf className="hero-leaf" /><br />FOR ALABAMA.</h1>
+              <p className="hero-points"><span>RECREATIONAL FREEDOM.</span> <span>MEDICAL ACCESS.</span> <strong>ECONOMIC PROSPERITY.</strong></p>
+              <p className="lede">It's time for safe, sensible cannabis policy that supports patients, empowers adults, fuels our economy, and keeps revenue in Alabama.</p>
+              <div className="cta-row">
+                <Link to="/resources" className="button primary">EXPLORE THE BENEFITS <ArrowRight size={16} /></Link>
+                <Link to="/rec-use" className="button secondary"><FileText size={15} /> READ THE PLAN</Link>
+              </div>
             </div>
+            <div className="alabama-overlay" aria-hidden="true"><AlabamaHero /></div>
           </div>
-          <div className="alabama-overlay" aria-hidden="true"><AlabamaHero /></div>
+          <div className="container stats-grid">
+            {stats.map((stat) => <StatCard key={stat.label} {...stat} />)}
+          </div>
+        </section>
+        <section className="feature-strip">
+          <div className="container feature-grid">
+            {features.map((feature) => <FeatureCard key={feature.title} {...feature} />)}
+          </div>
+        </section>
+        <EducationSection />
+        <div className="container split-showcase">
+          <NewsPreview />
+          <MerchPreview />
         </div>
-        <div className="container stats-grid">
-          {stats.map((stat) => <StatCard key={stat.label} {...stat} />)}
-        </div>
-      </section>
-      <section className="feature-strip">
-        <div className="container feature-grid">
-          {features.map((feature) => <FeatureCard key={feature.title} {...feature} />)}
-        </div>
-      </section>
-      <EducationSection />
-      <div className="container split-showcase">
-        <NewsPreview />
-        <MerchPreview />
       </div>
     </>
+  );
+}
+
+function ApprovedDesktopHome() {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+  function submitSignup(event) {
+    event.preventDefault();
+    if (!email.includes("@") || !email.includes(".")) {
+      setSignupStatus("Please enter a valid email address.");
+      return;
+    }
+    setSignupStatus("You're on the list for updates.");
+    setEmail("");
+  }
+  return (
+    <section className="approved-desktop-home" aria-label="Legalize Alabama homepage">
+      <img src="/assets/approved-homepage.png" alt="" />
+      <div className="approved-home-links">
+        <Link className="hit-logo" to="/" aria-label="Legalize Alabama home" />
+        <Link className="hit-rec" to="/rec-use" aria-label="Recreational use" />
+        <Link className="hit-medical" to="/medical" aria-label="Medical cannabis" />
+        <Link className="hit-economics" to="/economics" aria-label="Economics" />
+        <Link className="hit-news" to="/news" aria-label="News" />
+        <Link className="hit-resources" to="/resources" aria-label="Resources" />
+        <Link className="hit-merch" to="/merch" aria-label="Merch" />
+        <Link className="hit-involved" to="/get-involved" aria-label="Get involved" />
+        <Link className="hit-shop" to="/merch" aria-label="Shop merch" />
+        <button className="hit-search" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)} />
+        <Link className="hit-benefits" to="/resources" aria-label="Explore the benefits" />
+        <Link className="hit-plan" to="/rec-use" aria-label="Read the plan" />
+        <Link className="hit-facts" to="/resources" aria-label="View all resources" />
+        <Link className="hit-all-news" to="/news" aria-label="View all news" />
+        <Link className="hit-merch-preview" to="/merch" aria-label="Shop Legalize Alabama merchandise" />
+      </div>
+      <form className="approved-signup-form" onSubmit={submitSignup}>
+        <label className="sr-only" htmlFor="approved-email">Email address</label>
+        <input id="approved-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Email address" placeholder=" " />
+        <button type="submit" aria-label="Stay informed" />
+        {signupStatus && <span role="status">{signupStatus}</span>}
+      </form>
+      {searchOpen && (
+        <div className="approved-search-panel">
+          <label htmlFor="approved-search">SEARCH THE SITE</label>
+          <input id="approved-search" autoFocus placeholder="Search policy, news, resources..." />
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -526,14 +580,16 @@ function MedicalCross(props) {
 }
 
 function AlabamaMark(props) {
-  return <svg viewBox="0 0 34 56" {...props}><path d="M10 2h14l2 18 5 16-4 13-9-1-4 5-7-2 2-11L6 27z" /></svg>;
+  return <svg viewBox="0 0 240 330" {...props}><path d={alabamaBoundary} /></svg>;
 }
 
 function AlabamaHero() {
   return (
     <svg viewBox="0 0 240 330">
-      <path d="M49 10h126l6 70 25 106-17 75-42-6-22 43-25-12 4-51-30-37 9-50-22-39z" />
+      <path d={alabamaBoundary} />
       <Leaf className="state-leaf" x="75" y="120" width="88" height="88" />
     </svg>
   );
 }
+
+const alabamaBoundary = "M 10.0 192.5 L 23.5 81.0 L 32.0 16.8 L 28.7 15.0 L 25.8 10.0 L 178.0 11.4 L 202.7 135.8 L 206.3 140.9 L 208.7 149.1 L 213.8 159.7 L 213.2 166.0 L 220.0 171.0 L 209.9 178.4 L 206.9 192.4 L 206.1 204.1 L 211.1 213.1 L 208.1 223.5 L 211.8 240.5 L 213.4 244.8 L 155.0 245.3 L 61.2 245.0 L 59.1 252.7 L 72.5 263.9 L 70.2 272.5 L 74.7 278.0 L 69.4 283.7 L 57.6 288.7 L 36.1 290.3 L 52.5 286.6 L 43.2 279.4 L 43.5 271.2 L 37.1 263.3 L 34.1 265.7 L 31.4 281.3 L 29.2 284.0 L 25.5 282.3 L 20.8 280.7 L 16.8 279.6 L 14.6 281.8 L 10.0 192.5 Z";

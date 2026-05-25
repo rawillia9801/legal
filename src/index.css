@@ -72,6 +72,14 @@ svg {
   overflow: hidden;
 }
 
+.approved-desktop-home {
+  display: none;
+}
+
+.responsive-live-home {
+  display: block;
+}
+
 .eyebrow {
   color: var(--green);
   font-family: var(--heading);
@@ -1464,6 +1472,146 @@ svg {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+@media (min-width: 1001px) {
+  .home-shell > .alert-bar,
+  .home-shell > .main-header,
+  .home-shell > .signup-band,
+  .home-shell > .footer {
+    display: none;
+  }
+
+  .home-shell main {
+    background: #050706;
+  }
+
+  .approved-desktop-home {
+    display: block;
+    line-height: 0;
+    margin: 0 auto;
+    max-width: 100vw;
+    position: relative;
+    width: 100%;
+  }
+
+  .approved-desktop-home img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .approved-home-links a,
+  .approved-home-links button {
+    background: transparent;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+  }
+
+  .approved-home-links a:focus-visible,
+  .approved-home-links button:focus-visible,
+  .approved-signup-form input:focus-visible,
+  .approved-signup-form button:focus-visible {
+    box-shadow: 0 0 0 2px var(--neon), 0 0 18px rgba(155, 255, 107, 0.46);
+    outline: none;
+  }
+
+  .hit-logo { height: 4%; left: 10.3%; top: 3.1%; width: 11.8%; }
+  .hit-rec { height: 2.5%; left: 34.3%; top: 4%; width: 4.4%; }
+  .hit-medical { height: 2.5%; left: 40.5%; top: 4%; width: 4.9%; }
+  .hit-economics { height: 2.5%; left: 46.9%; top: 4%; width: 5.8%; }
+  .hit-news { height: 2.5%; left: 53.8%; top: 4%; width: 3.7%; }
+  .hit-resources { height: 2.5%; left: 58.5%; top: 4%; width: 5.6%; }
+  .hit-merch { height: 2.5%; left: 65.4%; top: 4%; width: 4.1%; }
+  .hit-involved { height: 3.2%; left: 72.7%; top: 3.5%; width: 7.3%; }
+  .hit-shop { height: 3.2%; left: 80.4%; top: 3.5%; width: 7.3%; }
+  .hit-search { height: 3.2%; left: 88.1%; top: 3.5%; width: 2.8%; }
+  .hit-benefits { height: 3.1%; left: 10.5%; top: 27.7%; width: 13.7%; }
+  .hit-plan { height: 3.1%; left: 24.5%; top: 27.7%; width: 11.4%; }
+  .hit-facts { height: 2.2%; left: 10.5%; top: 60.1%; width: 8.5%; }
+  .hit-all-news { height: 2.1%; left: 41.3%; top: 63.7%; width: 7.1%; }
+  .hit-merch-preview { height: 2.1%; left: 82.7%; top: 63.7%; width: 7.3%; }
+  .approved-signup-form {
+    height: 3.2%;
+    left: 36.2%;
+    position: absolute;
+    top: 81.6%;
+    width: 23.2%;
+  }
+
+  .approved-signup-form input {
+    background: transparent;
+    border: 0;
+    color: #dbe3d9;
+    height: 100%;
+    left: 0;
+    padding: 0 13px;
+    position: absolute;
+    top: 0;
+    width: 60.6%;
+  }
+
+  .approved-signup-form input:focus,
+  .approved-signup-form input:not(:placeholder-shown) {
+    background: #0d2115;
+  }
+
+  .approved-signup-form button {
+    background: transparent;
+    border: 0;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 36.5%;
+  }
+
+  .approved-signup-form span {
+    background: #07110c;
+    border: 1px solid rgba(118, 214, 75, 0.42);
+    bottom: calc(100% + 8px);
+    color: var(--green);
+    font-size: 11px;
+    left: 0;
+    line-height: 1.4;
+    padding: 5px 9px;
+    position: absolute;
+  }
+
+  .approved-search-panel {
+    align-items: center;
+    background: rgba(8, 13, 9, 0.97);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 16px;
+    padding: 13px 17px;
+    position: absolute;
+    right: 10.4%;
+    top: 7.1%;
+    width: 360px;
+  }
+
+  .approved-search-panel label {
+    color: var(--green);
+    font-family: var(--heading);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+  }
+
+  .approved-search-panel input {
+    background: #060a07;
+    border: 1px solid var(--border);
+    color: var(--white);
+    flex: 1;
+    height: 34px;
+    min-width: 0;
+    padding-inline: 10px;
+  }
+
+  .responsive-live-home {
+    display: none;
+  }
 }
 
 @media (max-width: 1420px) {
