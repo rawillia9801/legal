@@ -69,6 +69,32 @@ const products = [
   { name: "Capitol Leaf Decal Pack", price: "$9.00", image: "/assets/sticker.jpg", category: "STICKERS" },
 ];
 
+const footerGroups = [
+  { heading: "ABOUT", links: [["Our Mission", "/about/mission"], ["Leadership", "/about/leadership"], ["Press", "/about/press"], ["Contact", "/about/contact"]] },
+  { heading: "ISSUES", links: [["Recreational Use", "/rec-use"], ["Medical Access", "/medical"], ["Economic Impact", "/economics"], ["Safe Regulation", "/issues/safe-regulation"]] },
+  { heading: "RESOURCES", links: [["FAQs", "/resources/faqs"], ["Fact Sheets", "/resources/fact-sheets"], ["Reports", "/resources/reports"], ["State Laws", "/resources/state-laws"]] },
+  { heading: "GET INVOLVED", links: [["Take Action", "/get-involved/take-action"], ["Events", "/get-involved/events"], ["Volunteer", "/get-involved/volunteer"], ["Donate", "/get-involved/donate"]] },
+  { heading: "SHOP", links: [["All Products", "/merch"], ["Apparel", "/merch/apparel"], ["Accessories", "/merch/accessories"], ["Stickers", "/merch/stickers"]] },
+];
+
+const detailPages = {
+  "/about/mission": ["ABOUT LEGALIZE ALABAMA", "Our Mission", "We advocate for safe, responsible cannabis policy that improves medical access, respects adults, and strengthens Alabama communities.", [["Responsible Policy", "Support clear regulation, testing, labeling, and accountable oversight."], ["Patient Access", "Ensure Alabamians with qualifying conditions can pursue supervised treatment options."], ["Economic Opportunity", "Keep jobs, revenue, and investment working for communities across the state."]]],
+  "/about/leadership": ["ABOUT LEGALIZE ALABAMA", "Leadership", "Our work is guided by advocates, patients, small business voices, health professionals, and citizens seeking better policy.", [["Community First", "Leadership begins with listening to patients, families, and local communities."], ["Policy Integrity", "We prioritize evidence, transparency, and practical implementation."], ["Public Accountability", "A successful movement stays answerable to the people it represents."]]],
+  "/about/press": ["MEDIA CENTER", "Press", "Press resources, campaign updates, and factual materials for reporting on cannabis reform in Alabama.", [["Media Inquiries", "Request statements, interviews, or campaign background information."], ["News Releases", "Review major legislative and organizational announcements."], ["Fact Resources", "Access accurate context on medical, adult-use, and economic policy."]]],
+  "/about/contact": ["CONNECT WITH US", "Contact", "Reach the Legalize Alabama team about community engagement, media inquiries, policy questions, or volunteer opportunities.", [["General Questions", "Send questions about the movement or the policy platform."], ["Community Outreach", "Coordinate educational events and local conversations."], ["Media Contact", "Request comment or factual materials for coverage."]]],
+  "/issues/safe-regulation": ["PUBLIC SAFETY", "Safe Regulation", "Responsible legalization means age controls, rigorous testing, transparent labels, secure licensing, and enforcement focused on real harms.", [["Tested Products", "Require quality and contaminant testing before products reach consumers."], ["Youth Protection", "Use strict age verification, packaging, and marketing safeguards."], ["Accountable Licensing", "Set clear standards for producers, retailers, and regulators."]]],
+  "/resources/faqs": ["RESOURCES", "Frequently Asked Questions", "Clear responses to common questions about medical access, adult use, regulation, taxes, and public safety.", [["Who Benefits?", "Patients, responsible adults, communities, and a safer regulated marketplace."], ["How Is It Controlled?", "Through licensing, product testing, age restrictions, and transparent rules."], ["Where Does Revenue Go?", "Smart policy can direct new proceeds to visible Alabama priorities."]]],
+  "/resources/fact-sheets": ["RESOURCES", "Fact Sheets", "Concise materials for community education, conversations with lawmakers, and responsible public outreach.", [["Adult-Use Framework", "Core controls for a regulated adult cannabis market."], ["Medical Access", "Patient safeguards, physician oversight, and tested products."], ["Economic Impact", "Revenue, jobs, and local investment considerations."]]],
+  "/resources/reports": ["RESEARCH", "Reports", "Policy research and economic analysis supporting an informed conversation about reform in Alabama.", [["Revenue Analysis", "Understand potential annual economic activity and tax receipts."], ["Jobs Outlook", "Explore jobs across cultivation, testing, compliance, and retail."], ["Public Safety", "Review regulation-focused consumer and community protections."]]],
+  "/resources/state-laws": ["LEGAL RESOURCES", "State Laws", "Follow Alabama's existing cannabis laws and legislative pathways for responsible reform.", [["Current Policy", "A practical overview of the present legal environment."], ["Proposed Reform", "The goals and controls of legalization legislation."], ["Legislative Tracker", "Track hearings, votes, and opportunities for engagement."]]],
+  "/get-involved/take-action": ["GET INVOLVED", "Take Action", "Make your voice heard in support of thoughtful cannabis policy for Alabama patients, adults, and communities.", [["Stay Informed", "Get timely legislative updates and action opportunities."], ["Contact Leaders", "Tell elected officials why sensible reform matters."], ["Share The Facts", "Help your community engage with reliable information."]]],
+  "/get-involved/events": ["GET INVOLVED", "Events", "Join educational sessions, policy briefings, community conversations, and volunteer gatherings.", [["Community Forums", "Participate in public discussions grounded in facts."], ["Policy Briefings", "Learn how legislative developments affect Alabamians."], ["Volunteer Meetups", "Connect with people helping move reform forward."]]],
+  "/get-involved/volunteer": ["GET INVOLVED", "Volunteer", "Support outreach, education, events, and community organizing for responsible cannabis policy.", [["Outreach", "Help distribute facts and connect with local supporters."], ["Events", "Assist with educational and advocacy opportunities."], ["Digital Support", "Amplify updates and reliable resources online."]]],
+  "/get-involved/donate": ["GET INVOLVED", "Donate", "Support policy education, public outreach, organizing efforts, and the campaign for better Alabama cannabis laws.", [["Education", "Expand access to evidence-based policy resources."], ["Advocacy", "Communicate responsible reform priorities statewide."], ["Community", "Strengthen outreach to patients, adults, and families."]]],
+  "/privacy": ["LEGAL", "Privacy Policy", "Information about how Legalize Alabama handles contact information submitted through updates and volunteer forms.", [["Information Collected", "Contact details are collected only when voluntarily submitted."], ["How It Is Used", "Submitted details support updates, action alerts, and requested communication."], ["Your Choices", "Subscribers may request changes to communication preferences."]]],
+  "/terms": ["LEGAL", "Terms of Use", "Terms governing use of the Legalize Alabama website, educational content, and campaign resources.", [["Educational Use", "Site materials are provided for informational and advocacy purposes."], ["Merchandise Display", "Storefront elements may be preview-oriented until purchasing is enabled."], ["Site Updates", "Content may be updated as legislation develops."]]],
+};
+
 const pageData = {
   "/rec-use": {
     eyebrow: "RESPONSIBLE FREEDOM",
@@ -107,8 +133,12 @@ export default function App() {
         <Route path="news" element={<NewsPage />} />
         <Route path="resources" element={<ResourcesPage />} />
         <Route path="merch" element={<MerchPage />} />
+        <Route path="merch/apparel" element={<MerchPage initialFilter="APPAREL" />} />
+        <Route path="merch/accessories" element={<MerchPage initialFilter="ACCESSORIES" />} />
+        <Route path="merch/stickers" element={<MerchPage initialFilter="STICKERS" />} />
         <Route path="get-involved" element={<GetInvolvedPage />} />
         <Route path="shop-merch" element={<Navigate to="/merch" replace />} />
+        {Object.entries(detailPages).map(([path, data]) => <Route key={path} path={path.slice(1)} element={<DetailPage data={data} />} />)}
       </Route>
     </Routes>
   );
@@ -247,6 +277,11 @@ function ApprovedDesktopHome() {
         <Link className="hit-facts" to="/resources" aria-label="View all resources" />
         <Link className="hit-all-news" to="/news" aria-label="View all news" />
         <Link className="hit-merch-preview" to="/merch" aria-label="Shop Legalize Alabama merchandise" />
+        {footerGroups.flatMap((group, groupIndex) => group.links.map(([label, to], linkIndex) => (
+          <Link key={to} className={`hit-footer hit-footer-${groupIndex}-${linkIndex}`} to={to} aria-label={label} />
+        )))}
+        <Link className="hit-privacy" to="/privacy" aria-label="Privacy Policy" />
+        <Link className="hit-terms" to="/terms" aria-label="Terms of Use" />
       </div>
       <form className="approved-signup-form" onSubmit={submitSignup}>
         <label className="sr-only" htmlFor="approved-email">Email address</label>
@@ -444,8 +479,11 @@ function ResourcesPage() {
   );
 }
 
-function MerchPage() {
-  const [filter, setFilter] = useState("ALL");
+function MerchPage({ initialFilter = "ALL" }) {
+  const [filter, setFilter] = useState(initialFilter);
+  useEffect(() => {
+    setFilter(initialFilter);
+  }, [initialFilter]);
   const displayed = filter === "ALL" ? products : products.filter((product) => product.category === filter);
   return (
     <>
@@ -455,6 +493,19 @@ function MerchPage() {
         <button className="cart"><ShoppingBag size={17} /> CART (0)</button>
       </div>
       <section className="container store-grid">{displayed.map((product) => <ProductCard product={product} key={product.name} />)}</section>
+    </>
+  );
+}
+
+function DetailPage({ data }) {
+  const [eyebrow, title, intro, cards] = data;
+  return (
+    <>
+      <InnerHero eyebrow={eyebrow} title={title} intro={intro} />
+      <section className="container detail-grid">
+        {cards.map(([heading, text]) => <article className="resource-card" key={heading}><h2>{heading}</h2><p>{text}</p></article>)}
+      </section>
+      <PageCta />
     </>
   );
 }
@@ -539,21 +590,14 @@ function MiniAction({ icon: Icon, title, text }) {
 }
 
 function Footer() {
-  const groups = [
-    ["ABOUT", "Our Mission", "Leadership", "Press", "Contact"],
-    ["ISSUES", "Recreational Use", "Medical Access", "Economic Impact", "Safe Regulation"],
-    ["RESOURCES", "FAQs", "Fact Sheets", "Reports", "State Laws"],
-    ["GET INVOLVED", "Take Action", "Events", "Volunteer", "Donate"],
-    ["SHOP", "All Products", "Apparel", "Accessories", "Stickers"],
-  ];
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-brand"><Logo /><p>Working for safe, responsible cannabis policy that strengthens Alabama.</p><div className="socials"><span>X</span><span>f</span><span>◎</span><span>▶</span><span>♪</span></div></div>
-        {groups.map(([heading, ...links]) => <div className="footer-links" key={heading}><h2>{heading}</h2>{links.map((label) => <a key={label} href="#">{label}</a>)}</div>)}
+        {footerGroups.map(({ heading, links }) => <div className="footer-links" key={heading}><h2>{heading}</h2>{links.map(([label, to]) => <Link key={to} to={to}>{label}</Link>)}</div>)}
         <aside className="footer-signup"><h2>NEVER MISS AN UPDATE</h2><p>News, alerts, and opportunities to take action.</p><Link to="/get-involved" className="button secondary compact">SIGN UP</Link></aside>
       </div>
-      <div className="container copyright"><span>&copy; 2025 Legalize Alabama. All rights reserved.</span><span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></span></div>
+      <div className="container copyright"><span>&copy; 2025 Legalize Alabama. All rights reserved.</span><span><Link to="/privacy">Privacy Policy</Link><Link to="/terms">Terms of Use</Link></span></div>
     </footer>
   );
 }
