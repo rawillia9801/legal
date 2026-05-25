@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, NavLink, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, NavLink, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
 import {
   ArrowRight,
   BellRing,
@@ -55,9 +55,108 @@ const insights = [
 ];
 
 const articles = [
-  { tag: "LEGISLATIVE", date: "MAY 16, 2025", title: "Senate Committee advances cannabis reform bill", image: "capitol" },
-  { tag: "MEDICAL", date: "MAY 15, 2025", title: "Medical cannabis access expands across the South", image: "cultivation" },
-  { tag: "ECONOMICS", date: "MAY 14, 2025", title: "New report: Alabama could gain $335M+ annually", image: "city" },
+  {
+    slug: "dispensary-licenses-issued",
+    tag: "MEDICAL",
+    date: "JAN 08, 2026",
+    title: "Alabama issues three medical cannabis dispensary licenses",
+    image: "capitol",
+    intro: "Alabama's medical cannabis program moved closer to patient access when three awarded dispensary licenses were issued in January 2026.",
+    sections: [
+      ["What happened", "The Alabama Medical Cannabis Commission (AMCC) says it voted to award four dispensary licenses on December 11, 2025. Three of those licenses issued on January 8, 2026, authorizing those licensees to open dispensing sites."],
+      ["What remains unresolved", "AMCC says the fourth awarded dispensary license was stayed pending judicial review. Its general FAQ also says the date medical cannabis product will be available remains uncertain, so license issuance should not be treated as confirmation that patient sales have started."],
+      ["Why it matters", "Licensed dispensing sites are a required part of Alabama's medical-only access system. Patients still must satisfy state eligibility and registration requirements before obtaining approved products."],
+    ],
+    sources: [
+      ["AMCC: Patients, Caregivers, & Physicians", "https://amcc.alabama.gov/patients/"],
+      ["AMCC: Frequently Asked Questions", "https://amcc.alabama.gov/frequently-asked-questions/"],
+    ],
+  },
+  {
+    slug: "patient-registration-guide",
+    tag: "MEDICAL",
+    date: "UPDATED MAY 25, 2026",
+    title: "How Alabama patients and caregivers register for medical cannabis",
+    image: "cultivation",
+    intro: "AMCC has published registration instructions for patients, caregivers, and physicians as Alabama's medical cannabis system advances.",
+    sections: [
+      ["Patient pathway", "According to AMCC, a patient must have a qualifying medical condition, receive a recommendation from an Alabama physician certified to recommend medical cannabis, and be registered in the AMCC patient registry system."],
+      ["Physician role", "AMCC says a recommendation must come from a registered certifying physician approved by both the Alabama Board of Medical Examiners and AMCC. The agency provides a current physician list on its patients page."],
+      ["Caregiver access", "If a patient is required to have or chooses to have a caregiver, AMCC requires a separate caregiver application through the registry process."],
+    ],
+    sources: [
+      ["AMCC: Patients, Caregivers, & Physicians", "https://amcc.alabama.gov/patients/"],
+      ["Alabama Board of Medical Examiners: Medical Cannabis", "https://www.albme.gov/licensing/md-do/registrations/medical-cannabis"],
+    ],
+  },
+  {
+    slug: "medical-cannabis-tax-obligations",
+    tag: "ECONOMICS",
+    date: "UPDATED MAY 25, 2026",
+    title: "Alabama defines medical cannabis privilege tax obligations",
+    image: "city",
+    intro: "Alabama's Department of Revenue has published filing rules for licensed medical cannabis entities operating under the Compassion Act.",
+    sections: [
+      ["Who must file", "The Alabama Department of Revenue says Section 20-2A-80(b)(1) requires licensed cultivators, processors, dispensaries, secure transporters, testing laboratories, and integrated facilities to file and pay the Medical Cannabis Privilege Tax."],
+      ["How returns are filed", "The department says annual Medical Cannabis Privilege Tax returns must be filed electronically through My Alabama Taxes, with no paper filing option for the annual return."],
+      ["Why this is relevant", "A regulated medical market includes state tax and reporting obligations for licensees. This official tax framework concerns medical cannabis businesses; it is not evidence that Alabama has enacted adult-use legalization."],
+    ],
+    sources: [
+      ["Alabama Department of Revenue: Medical Cannabis Privilege Tax", "https://www.revenue.alabama.gov/faq-categories/medical-cannabis-privilege-tax/"],
+      ["AMCC: Alabama Medical Cannabis Statute", "https://amcc.alabama.gov/wp-content/uploads/2024/11/Alabama-Medical-Cannabis-Statute-updated-November-2024.pdf"],
+    ],
+  },
+  {
+    slug: "dispensing-sites-by-municipality",
+    tag: "COMMUNITY",
+    date: "UPDATED MAY 25, 2026",
+    title: "AMCC lists municipalities for issued dispensing licenses",
+    image: "capitol",
+    intro: "The commission now identifies Alabama communities where dispensing sites may be located based on licenses issued to date.",
+    sections: [
+      ["Locations listed by AMCC", "AMCC lists Athens, Attalla, Bessemer, Birmingham, Daphne, Mobile, Montgomery, Oxford, and Talladega as municipalities for dispensing sites based on licenses issued to date."],
+      ["Possible expansion", "AMCC notes that an additional three retail dispensing sites may be added if another dispensary license is issued. It also says integrated facility licensing could add sites, subject to the commission's proceedings."],
+      ["Check before visiting", "The commission's published list describes authorized locations, not a guarantee that every site is currently open or that product is available. Patients should consult AMCC updates before making access plans."],
+    ],
+    sources: [
+      ["AMCC: Patients, Caregivers, & Physicians", "https://amcc.alabama.gov/patients/"],
+      ["AMCC: Frequently Asked Questions", "https://amcc.alabama.gov/frequently-asked-questions/"],
+    ],
+  },
+  {
+    slug: "allowed-medical-products",
+    tag: "MEDICAL",
+    date: "UPDATED MAY 25, 2026",
+    title: "What medical cannabis products Alabama allows and prohibits",
+    image: "cultivation",
+    intro: "Alabama's medical cannabis framework permits specific non-smokable forms and prohibits raw plant material and products intended for smoking or vaping.",
+    sections: [
+      ["Allowed forms", "AMCC lists non-sugar-coated gelatinous cubes or cuboids, lozenges, tablets, capsules, tinctures, topical gels, oils and creams, suppositories, transdermal patches, nebulizers, and liquids or oils for an inhaler as allowed forms."],
+      ["Prohibited forms", "AMCC lists raw plant material, products that could be smoked or vaped, and food products such as cookies or candies as prohibited."],
+      ["A medical-only system", "These restrictions apply within Alabama's medical cannabis program. They do not create a recreational cannabis market or permit general adult-use sales."],
+    ],
+    sources: [
+      ["AMCC: Patients, Caregivers, & Physicians", "https://amcc.alabama.gov/patients/"],
+      ["AMCC: Frequently Asked Questions", "https://amcc.alabama.gov/frequently-asked-questions/"],
+    ],
+  },
+  {
+    slug: "commission-meeting-calendar",
+    tag: "LEGISLATIVE",
+    date: "JUN 11, 2026",
+    title: "AMCC posts June meeting as program oversight continues",
+    image: "capitol",
+    intro: "The state's medical cannabis commission continues public oversight activity as licensing and patient-access implementation proceed.",
+    sections: [
+      ["Next published meeting", "As of May 25, 2026, the AMCC meetings page lists a June 11, 2026 meeting at 1:00 p.m. and marks the previously listed May 14, 2026 meeting as cancelled."],
+      ["Where proceedings are documented", "The commission publishes meeting information and minutes on its meetings page, including minutes dated February 12, 2026 and January 26, 2026."],
+      ["How to stay current", "Schedules, agenda materials, licensing actions, and program updates can change. The commission meeting page is the primary official source for the next proceeding."],
+    ],
+    sources: [
+      ["AMCC: Meetings", "https://amcc.alabama.gov/meetings/"],
+      ["AMCC: News", "https://amcc.alabama.gov/news/"],
+    ],
+  },
 ];
 
 const products = [
@@ -251,6 +350,7 @@ export default function App() {
         <Route path="medical" element={<PolicyPage data={pageData["/medical"]} />} />
         <Route path="economics" element={<EconomicsPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="news/:slug" element={<ArticlePage />} />
         <Route path="resources" element={<ResourcesPage />} />
         <Route path="merch" element={<MerchPage />} />
         <Route path="merch/apparel" element={<MerchPage initialFilter="APPAREL" />} />
@@ -463,24 +563,27 @@ function EducationSection() {
   );
 }
 
-function NewsPreview({ full = false }) {
+function NewsPreview({ full = false, displayedArticles = articles }) {
+  const visibleArticles = full ? displayedArticles : articles.slice(0, 3);
   return (
     <section className={full ? "news-block full" : "news-block"}>
       <SectionHeading title={full ? "NEWS & UPDATES" : "LATEST NEWS & UPDATES"} link="VIEW ALL NEWS" to="/news" />
       <div className="article-grid">
-        {(full ? [...articles, ...articles] : articles).map((article, index) => <ArticleCard key={`${article.title}-${index}`} {...article} />)}
+        {visibleArticles.map((article) => <ArticleCard key={article.slug} {...article} />)}
       </div>
     </section>
   );
 }
 
-function ArticleCard({ tag, date, title, image }) {
+function ArticleCard({ slug, tag, date, title, image }) {
   return (
     <article className="article-card">
-      <div className={`article-image ${image}`} />
-      <div className="article-meta"><span>{tag}</span><time>{date}</time></div>
-      <h3>{title}</h3>
-      <Link to="/news">Read More <ArrowRight size={13} /></Link>
+      <Link className="article-card-link" to={`/news/${slug}`} aria-label={`Read ${title}`}>
+        <div className={`article-image ${image}`} />
+        <div className="article-meta"><span>{tag}</span><time>{date}</time></div>
+        <h3>{title}</h3>
+        <span className="article-read-more">Read More <ArrowRight size={13} /></span>
+      </Link>
     </article>
   );
 }
@@ -572,11 +675,49 @@ function EconomicsPage() {
 }
 
 function NewsPage() {
+  const [category, setCategory] = useState("ALL");
+  const displayedArticles = category === "ALL" ? articles : articles.filter((article) => article.tag === category);
   return (
     <>
-      <InnerHero eyebrow="LATEST COVERAGE" title="News & Updates" intro="Track legislation, patient access developments, economic research, and community voices shaping Alabama's next chapter." />
-      <div className="container filters">{["ALL", "LEGISLATIVE", "MEDICAL", "ECONOMICS", "COMMUNITY"].map((label, index) => <button className={index === 0 ? "active" : ""} key={label}>{label}</button>)}</div>
-      <div className="container standalone-news"><NewsPreview full /></div>
+      <InnerHero eyebrow="OFFICIAL SOURCES / UPDATED MAY 25, 2026" title="News & Updates" intro="Track Alabama medical cannabis access, oversight, tax rules, and community implementation with direct links to the official sources." />
+      <div className="container filters">{["ALL", "LEGISLATIVE", "MEDICAL", "ECONOMICS", "COMMUNITY"].map((label) => <button type="button" aria-pressed={category === label} className={category === label ? "active" : ""} key={label} onClick={() => setCategory(label)}>{label}</button>)}</div>
+      <div className="container standalone-news"><NewsPreview full displayedArticles={displayedArticles} /></div>
+    </>
+  );
+}
+
+function ArticlePage() {
+  const { slug } = useParams();
+  const article = articles.find((item) => item.slug === slug);
+  if (!article) {
+    return <Navigate to="/news" replace />;
+  }
+  return (
+    <>
+      <InnerHero eyebrow={`${article.tag} / VERIFIED MAY 25, 2026`} title={article.title} intro={article.intro} />
+      <article className="container story-layout">
+        <aside className="story-aside">
+          <div className={`story-image article-image ${article.image}`} />
+          <p className="story-status">SOURCE CHECKED: MAY 25, 2026</p>
+          <p>Information on this page is based on Alabama state agency materials linked below. Official schedules and program status may change.</p>
+          <Link className="story-back" to="/news"><ArrowRight size={14} /> BACK TO NEWS</Link>
+        </aside>
+        <div className="story-content">
+          {article.sections.map(([heading, text]) => (
+            <section className="story-section" key={heading}>
+              <h2>{heading}</h2>
+              <p>{text}</p>
+            </section>
+          ))}
+          <section className="story-sources">
+            <p className="eyebrow">PRIMARY SOURCES</p>
+            <h2>Official references</h2>
+            {article.sources.map(([label, url]) => (
+              <a key={url} href={url} target="_blank" rel="noreferrer">{label}<ArrowRight size={15} /></a>
+            ))}
+          </section>
+        </div>
+      </article>
     </>
   );
 }
