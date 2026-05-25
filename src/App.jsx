@@ -83,16 +83,136 @@ const detailPages = {
   "/about/press": ["MEDIA CENTER", "Press", "Press resources, campaign updates, and factual materials for reporting on cannabis reform in Alabama.", [["Media Inquiries", "Request statements, interviews, or campaign background information."], ["News Releases", "Review major legislative and organizational announcements."], ["Fact Resources", "Access accurate context on medical, adult-use, and economic policy."]]],
   "/about/contact": ["CONNECT WITH US", "Contact", "Reach the Legalize Alabama team about community engagement, media inquiries, policy questions, or volunteer opportunities.", [["General Questions", "Send questions about the movement or the policy platform."], ["Community Outreach", "Coordinate educational events and local conversations."], ["Media Contact", "Request comment or factual materials for coverage."]]],
   "/issues/safe-regulation": ["PUBLIC SAFETY", "Safe Regulation", "Responsible legalization means age controls, rigorous testing, transparent labels, secure licensing, and enforcement focused on real harms.", [["Tested Products", "Require quality and contaminant testing before products reach consumers."], ["Youth Protection", "Use strict age verification, packaging, and marketing safeguards."], ["Accountable Licensing", "Set clear standards for producers, retailers, and regulators."]]],
-  "/resources/faqs": ["RESOURCES", "Frequently Asked Questions", "Clear responses to common questions about medical access, adult use, regulation, taxes, and public safety.", [["Who Benefits?", "Patients, responsible adults, communities, and a safer regulated marketplace."], ["How Is It Controlled?", "Through licensing, product testing, age restrictions, and transparent rules."], ["Where Does Revenue Go?", "Smart policy can direct new proceeds to visible Alabama priorities."]]],
-  "/resources/fact-sheets": ["RESOURCES", "Fact Sheets", "Concise materials for community education, conversations with lawmakers, and responsible public outreach.", [["Adult-Use Framework", "Core controls for a regulated adult cannabis market."], ["Medical Access", "Patient safeguards, physician oversight, and tested products."], ["Economic Impact", "Revenue, jobs, and local investment considerations."]]],
-  "/resources/reports": ["RESEARCH", "Reports", "Policy research and economic analysis supporting an informed conversation about reform in Alabama.", [["Revenue Analysis", "Understand potential annual economic activity and tax receipts."], ["Jobs Outlook", "Explore jobs across cultivation, testing, compliance, and retail."], ["Public Safety", "Review regulation-focused consumer and community protections."]]],
-  "/resources/state-laws": ["LEGAL RESOURCES", "State Laws", "Follow Alabama's existing cannabis laws and legislative pathways for responsible reform.", [["Current Policy", "A practical overview of the present legal environment."], ["Proposed Reform", "The goals and controls of legalization legislation."], ["Legislative Tracker", "Track hearings, votes, and opportunities for engagement."]]],
   "/get-involved/take-action": ["GET INVOLVED", "Take Action", "Make your voice heard in support of thoughtful cannabis policy for Alabama patients, adults, and communities.", [["Stay Informed", "Get timely legislative updates and action opportunities."], ["Contact Leaders", "Tell elected officials why sensible reform matters."], ["Share The Facts", "Help your community engage with reliable information."]]],
   "/get-involved/events": ["GET INVOLVED", "Events", "Join educational sessions, policy briefings, community conversations, and volunteer gatherings.", [["Community Forums", "Participate in public discussions grounded in facts."], ["Policy Briefings", "Learn how legislative developments affect Alabamians."], ["Volunteer Meetups", "Connect with people helping move reform forward."]]],
   "/get-involved/volunteer": ["GET INVOLVED", "Volunteer", "Support outreach, education, events, and community organizing for responsible cannabis policy.", [["Outreach", "Help distribute facts and connect with local supporters."], ["Events", "Assist with educational and advocacy opportunities."], ["Digital Support", "Amplify updates and reliable resources online."]]],
   "/get-involved/donate": ["GET INVOLVED", "Donate", "Support policy education, public outreach, organizing efforts, and the campaign for better Alabama cannabis laws.", [["Education", "Expand access to evidence-based policy resources."], ["Advocacy", "Communicate responsible reform priorities statewide."], ["Community", "Strengthen outreach to patients, adults, and families."]]],
   "/privacy": ["LEGAL", "Privacy Policy", "Information about how Legalize Alabama handles contact information submitted through updates and volunteer forms.", [["Information Collected", "Contact details are collected only when voluntarily submitted."], ["How It Is Used", "Submitted details support updates, action alerts, and requested communication."], ["Your Choices", "Subscribers may request changes to communication preferences."]]],
   "/terms": ["LEGAL", "Terms of Use", "Terms governing use of the Legalize Alabama website, educational content, and campaign resources.", [["Educational Use", "Site materials are provided for informational and advocacy purposes."], ["Merchandise Display", "Storefront elements may be preview-oriented until purchasing is enabled."], ["Site Updates", "Content may be updated as legislation develops."]]],
+};
+
+const resourceCards = [
+  { icon: FileText, title: "FAQs", text: "Straight answers to common legalization and regulation questions.", route: "/resources/faqs" },
+  { icon: FileText, title: "Fact Sheets", text: "Plain-language policy materials for community conversations.", route: "/resources/fact-sheets" },
+  { icon: ChartNoAxesColumnIncreasing, title: "Reports", text: "Research on public health, jobs, tax impact, and enforcement.", route: "/resources/reports" },
+  { icon: Landmark, title: "State Laws", text: "Current Alabama cannabis statutes and proposed reforms.", route: "/resources/state-laws" },
+  { icon: CalendarDays, title: "Legislative Tracker", text: "Monitor bills, hearings, votes, and opportunities to be heard.", route: "/resources/legislative-tracker" },
+  { icon: ShieldCheck, title: "How Regulation Works", text: "Testing, licensing, age controls, and consumer protections.", route: "/resources/how-regulation-works" },
+];
+
+const resourcePages = {
+  "/resources/faqs": {
+    eyebrow: "RESOURCES",
+    title: "Frequently Asked Questions",
+    intro: "Clear answers to the questions Alabamians ask most about cannabis law, medical access, adult-use reform, hemp products, and public safety.",
+    summary: "Last reviewed May 25, 2026. Cannabis policy changes quickly; always verify current law with the Alabama Legislature, Alabama Medical Cannabis Commission, or a licensed attorney.",
+    sections: [
+      { title: "Is recreational cannabis legal in Alabama?", text: "No. Adult-use cannabis remains illegal in Alabama. First-time possession for personal use is generally prosecuted as second-degree possession, while repeat possession, possession for other than personal use, sale, trafficking, and distribution carry more serious penalties." },
+      { title: "Is medical cannabis legal?", text: "Yes, Alabama enacted the Darren Wesley 'Ato' Hall Compassion Act in 2021. The law created the Alabama Medical Cannabis Commission and a physician-certification system for qualifying patients, but the commercial rollout has been delayed by licensing disputes and implementation steps." },
+      { title: "When will patients be able to buy medical cannabis?", text: "The program has moved forward but is not a mature retail market yet. The commission approved several dispensary licenses in late 2025, and public reporting from the commission anticipated patient access beginning in spring 2026 after physician certification and patient registry steps are completed." },
+      { title: "Who may qualify as a patient?", text: "Alabama law lists qualifying medical conditions including cancer-related symptoms, epilepsy or seizure disorders, Crohn's disease, depression, panic disorder, Parkinson's disease, PTSD, sickle cell anemia, spasticity linked to multiple sclerosis or spinal cord injury, Tourette's syndrome, autism spectrum disorder, terminal illness, and chronic or intractable pain when conventional treatment has failed or caused intolerable side effects." },
+      { title: "Can Alabama patients smoke or vape medical cannabis?", text: "No. Alabama's medical cannabis law does not authorize smoking, vaping, raw plant material, or food products such as cookies or candies. Allowed product forms are limited by statute and commission rules." },
+      { title: "What changed for hemp-derived THC products?", text: "House Bill 445 added statewide rules for consumable hemp products, including a ban on smokable hemp products, age restrictions, testing and labeling standards, THC limits per serving and container, a 10% excise tax, and ABC Board licensing for sellers and manufacturers." },
+      { title: "Why regulate instead of prohibit?", text: "Regulation gives the state tools prohibition cannot provide: age checks, product testing, clear labels, licensed businesses, track-and-trace accountability, recall authority, tax collection, and enforcement focused on unsafe actors rather than patients or responsible adults." },
+      { title: "Is this legal advice?", text: "No. This page is educational. Anyone facing a cannabis charge, starting a business, or seeking medical certification should consult the relevant state agency or qualified legal counsel." },
+    ],
+    takeaways: ["Adult use remains illegal.", "Medical cannabis is legal but implementation is still developing.", "Hemp-derived products are regulated separately from medical cannabis.", "Testing, labeling, licensing, and age controls are central to safe reform."],
+    sources: [
+      ["Alabama Medical Cannabis Commission", "https://amcc.alabama.gov/"],
+      ["Alabama Legislature Bill Search", "https://alison.legislature.state.al.us/bill-search"],
+      ["Alabama Code, Title 13A Criminal Code", "https://codes.findlaw.com/al/title-13a-criminal-code/"],
+    ],
+  },
+  "/resources/fact-sheets": {
+    eyebrow: "RESOURCES",
+    title: "Fact Sheets",
+    intro: "Plain-language materials built for conversations with neighbors, faith leaders, lawmakers, employers, patients, and local officials.",
+    summary: "Use these fact sheets as discussion guides. They explain the difference between current Alabama law and policy choices Alabama could make through future legislation.",
+    sections: [
+      { title: "Adult-Use Reform", text: "A responsible adult-use framework would limit sales to adults 21 and older, require state licenses, mandate testing and child-resistant packaging, prohibit youth-focused marketing, collect taxes transparently, and create penalties for unlicensed sales." },
+      { title: "Medical Access", text: "Alabama's medical program is designed around physician certification, qualifying medical conditions, patient registry cards, licensed cultivation and processing, secure transport, state-regulated dispensaries, and tested non-smokable products." },
+      { title: "Public Safety", text: "Regulation supports public safety by replacing untested products with lab-verified products, requiring labels, limiting access to minors, and giving regulators inspection and recall authority." },
+      { title: "Economic Opportunity", text: "A regulated market can create roles in cultivation, processing, laboratory testing, logistics, retail, security, compliance, construction, accounting, and professional services. Revenue projections should always be tied to actual tax rates, license caps, patient access, and market size." },
+      { title: "Criminal Justice", text: "Alabama still criminalizes adult possession outside the medical program. Reform proposals often address possession penalties, expungement, and redirecting enforcement resources toward impaired driving, youth access, and unlicensed sales." },
+      { title: "Hemp Products", text: "Consumable hemp products are governed separately from medical cannabis. Alabama's 2025 hemp law restricts smokable products, sets limits on intoxicating THC servings and packages, adds testing and labeling, and shifts licensing oversight to the ABC Board." },
+      { title: "Local Communities", text: "Local officials can prepare for reform by studying zoning, buffer distances, hours of operation, security plans, community reinvestment, impaired-driving education, and transparent public reporting." },
+      { title: "Talking Point", text: "The core message is simple: Alabama can keep cannabis unregulated in the illegal market, or it can set rules that protect patients, adults, families, and communities." },
+    ],
+    takeaways: ["Separate what current law says from what reform could do.", "Do not promise tax numbers without showing assumptions.", "Center patient access, public safety, and accountability.", "Use agency and legislative sources when speaking publicly."],
+    sources: [["Alabama Medical Cannabis Commission", "https://amcc.alabama.gov/"], ["Alabama Legislature", "https://alison.legislature.state.al.us/"]],
+  },
+  "/resources/reports": {
+    eyebrow: "RESEARCH",
+    title: "Reports",
+    intro: "Research summaries for people who want the evidence behind cannabis policy, including health protections, enforcement, jobs, tax structure, and state implementation.",
+    summary: "This page separates confirmed Alabama status from broader policy findings. Exact fiscal outcomes depend on the law Alabama adopts, agency capacity, licensing decisions, tax rates, and consumer behavior.",
+    sections: [
+      { title: "Alabama Status Brief", text: "Adult-use cannabis remains illegal. Medical cannabis is legal under state law but has faced years of licensing litigation and implementation delays. Dispensary licenses approved in late 2025 moved the program closer to patient access." },
+      { title: "Medical Implementation", text: "Successful medical programs require certified physicians, an accessible patient registry, clear product rules, accurate labels, secure supply chains, trained dispensary staff, and timely updates from regulators." },
+      { title: "Public Health Review", text: "Evidence-based regulation prioritizes youth prevention, impaired-driving education, contaminant testing, potency disclosure, serving-size clarity, adverse-event reporting, and fast recalls when products fail standards." },
+      { title: "Tax & Revenue Note", text: "Cannabis tax revenue is not automatic. It depends on legal access, license availability, product price, tax design, enforcement against the illicit market, local participation, and whether patients are overtaxed." },
+      { title: "Jobs & Small Business", text: "A regulated system can support jobs in agriculture, labs, processing, compliance, retail, construction, logistics, software, legal services, security, and accounting. License rules determine whether opportunity is broad or concentrated." },
+      { title: "Enforcement Impact", text: "Prohibition keeps possession and distribution cases in the criminal system. Reform can reduce low-level possession enforcement while preserving penalties for sales to minors, unlicensed production, trafficking, and impaired driving." },
+      { title: "Regional Context", text: "Alabama is surrounded by states with varied cannabis policies. A practical Alabama approach should account for cross-border patient demand, hemp product rules, law enforcement clarity, and economic leakage." },
+      { title: "Implementation Risks", text: "Common risks include litigation over licenses, too few legal outlets, high taxes that preserve illicit sales, unclear product standards, delayed testing capacity, and public confusion between hemp, medical cannabis, and adult-use cannabis." },
+    ],
+    takeaways: ["Reliable reports show assumptions, not just headline numbers.", "Patient access depends on implementation, not just legalization on paper.", "Public health improves when regulators can test, label, inspect, and recall products.", "A strong licensing design matters as much as tax rate."],
+    sources: [["National Conference of State Legislatures Cannabis Overview", "https://www.ncsl.org/civil-and-criminal-justice/cannabis-overview"], ["Alabama Medical Cannabis Commission", "https://amcc.alabama.gov/"], ["Alabama Legislature", "https://alison.legislature.state.al.us/"]],
+  },
+  "/resources/state-laws": {
+    eyebrow: "LEGAL RESOURCES",
+    title: "State Laws",
+    intro: "A practical overview of Alabama cannabis law today: adult possession, medical cannabis, hemp-derived products, and the places where state and federal law still conflict.",
+    summary: "This is a policy summary, not legal advice. The Code of Alabama, enacted bills, agency rules, and court orders control when they differ from any educational summary.",
+    sections: [
+      { title: "Adult Possession", text: "Alabama does not allow adult-use cannabis. Personal-use possession can be charged as second-degree possession, while possession for other than personal use or a subsequent personal-use offense can be charged as first-degree possession." },
+      { title: "Sale & Distribution", text: "Unlicensed sale or distribution remains criminal. Penalties increase with conduct, quantity, location, prior record, sales to minors, and trafficking allegations." },
+      { title: "Medical Cannabis Act", text: "The 2021 Compassion Act created the Alabama Medical Cannabis Commission, medical cannabis business license categories, qualifying patient rules, physician certification requirements, and limits on product forms." },
+      { title: "Allowed Medical Products", text: "Alabama's medical program is limited to approved non-smokable forms. The statute excludes smoking, vaping, raw plant material, and conventional food products such as baked goods or candies." },
+      { title: "Hemp-Derived Products", text: "Alabama's 2025 hemp law regulates consumable hemp products separately. It bans smokable hemp, sets THC serving and container limits, requires labeling and testing, restricts sales channels, adds an excise tax, and assigns licensing to the ABC Board." },
+      { title: "Local Government Role", text: "Local rules can affect siting, zoning, business licenses, setbacks, signage, nuisance rules, and enforcement coordination. Local policy should be transparent, consistent, and tied to public safety." },
+      { title: "Federal Law", text: "Cannabis remains controlled under federal law. State legalization can create a state-law defense or licensing system, but it does not erase federal restrictions or banking, tax, and interstate commerce complications." },
+      { title: "What To Verify", text: "Before acting, verify the current Code of Alabama sections, AMCC rules, ABC Board hemp rules, local ordinances, and any active litigation or court orders affecting licensing." },
+    ],
+    takeaways: ["Adult-use cannabis is not legal in Alabama.", "Medical cannabis is legal under state law but tightly limited.", "Hemp-derived THC products now have separate statewide rules.", "Federal law remains an important limitation."],
+    sources: [["Code of Alabama", "https://alison.legislature.state.al.us/code-of-alabama"], ["Alabama Medical Cannabis Commission", "https://amcc.alabama.gov/"], ["Alabama ABC Board", "https://alabcboard.gov/"]],
+  },
+  "/resources/legislative-tracker": {
+    eyebrow: "LEGISLATIVE TRACKER",
+    title: "Track Cannabis Bills In Alabama",
+    intro: "A simple guide to following cannabis, hemp, medical access, licensing, and criminal-justice bills through the Alabama Legislature.",
+    summary: "This tracker is a guide, not a live feed. Always confirm real-time bill status on ALISON, the Alabama Legislature's public bill-search system.",
+    sections: [
+      { title: "Step 1: Search ALISON", text: "Use the Alabama Legislature bill-search portal and search terms such as cannabis, marijuana, medical cannabis, hemp, THC, cannabinoid, ABC Board, AMCC, possession, expungement, and impaired driving." },
+      { title: "Step 2: Read The Text", text: "Open the latest bill version, not just the summary. Amendments can change age limits, penalties, tax rates, product forms, agency authority, licensing caps, and effective dates." },
+      { title: "Step 3: Check Committee", text: "Most bills must pass through committee before a full chamber vote. Committee agendas are where public testimony, substitutions, and major amendments often happen." },
+      { title: "Step 4: Follow Votes", text: "Track first reading, committee action, second reading, floor votes, conference committee activity, enrollment, governor action, and effective dates." },
+      { title: "Step 5: Contact Lawmakers", text: "When a bill is active, contact your senator and representative with concise, respectful comments. Share personal stories, public-safety priorities, and specific bill sections when possible." },
+      { title: "What To Watch", text: "Key policy points include adult-use possession limits, medical patient access, hemp product restrictions, tax structure, licensing categories, local control, testing standards, packaging rules, expungement, and penalties for unlicensed sales." },
+      { title: "2025-2026 Context", text: "Recent Alabama cannabis activity has included medical cannabis licensing progress and new regulation of hemp-derived THC products. Any new bill should be read against those existing frameworks." },
+      { title: "Action Checklist", text: "Save the bill number, read the newest text, identify the sponsor, note the assigned committee, check hearing times, prepare comments, and share factual updates with your community." },
+    ],
+    takeaways: ["Bill summaries are helpful but not enough.", "Committee hearings are key moments for public input.", "Amendments can completely change a cannabis bill.", "Use bill numbers and exact sections when contacting officials."],
+    sources: [["Alabama Legislature Bill Search", "https://alison.legislature.state.al.us/bill-search"], ["Find My Legislator", "https://alison.legislature.state.al.us/representatives-house-leaders"], ["Alabama Senate", "https://alison.legislature.state.al.us/senate-leaders"]],
+  },
+  "/resources/how-regulation-works": {
+    eyebrow: "SAFE REGULATION",
+    title: "How Cannabis Regulation Works",
+    intro: "A regulated cannabis system is built from enforceable rules: licenses, testing, age controls, labels, inspections, tracking, taxes, and penalties for unsafe conduct.",
+    summary: "Good regulation turns policy goals into day-to-day requirements businesses and regulators can actually follow.",
+    sections: [
+      { title: "Licensing", text: "The state decides who may cultivate, process, test, transport, dispense, or sell products. Strong licensing requires background review, financial disclosure, security plans, local compliance, and ongoing renewal standards." },
+      { title: "Seed-To-Sale Tracking", text: "Tracking systems document product movement from cultivation through processing, testing, transport, and sale. That helps prevent diversion, identify recalls, and audit inventory." },
+      { title: "Laboratory Testing", text: "Independent labs test for potency and contaminants such as pesticides, residual solvents, heavy metals, microbial contamination, and other unsafe materials before products reach consumers." },
+      { title: "Labels & Packaging", text: "Labels should clearly show product type, THC/CBD content, serving size, batch number, ingredients, warnings, expiration or use-by guidance, and a way to connect the product to test results." },
+      { title: "Age & Patient Controls", text: "Adult-use markets use age-21 checks. Medical systems use physician certification and patient registries. Both models should protect minors and prevent unauthorized sales." },
+      { title: "Retail Rules", text: "Retail rules can cover employee training, ID checks, purchase limits, security cameras, restricted hours, advertising limits, signage, recordkeeping, and procedures for refusing unsafe sales." },
+      { title: "Tax Collection", text: "Taxes may be based on price, potency, weight, or a hybrid model. Transparent tax rules help fund enforcement and public programs without pushing prices so high that illicit sales continue." },
+      { title: "Enforcement & Recalls", text: "Regulators need inspection authority, product-hold authority, recall procedures, civil penalties, license suspension, and criminal referrals for serious violations like sales to minors or falsified testing." },
+    ],
+    takeaways: ["Testing and labels make products knowable.", "Licensing and tracking make businesses accountable.", "Age controls protect youth.", "Recall authority protects consumers when something goes wrong."],
+    sources: [["Alabama Medical Cannabis Commission", "https://amcc.alabama.gov/"], ["Alabama ABC Board", "https://alabcboard.gov/"], ["National Conference of State Legislatures Cannabis Overview", "https://www.ncsl.org/civil-and-criminal-justice/cannabis-overview"]],
+  },
 };
 
 const pageData = {
@@ -138,6 +258,7 @@ export default function App() {
         <Route path="merch/stickers" element={<MerchPage initialFilter="STICKERS" />} />
         <Route path="get-involved" element={<GetInvolvedPage />} />
         <Route path="shop-merch" element={<Navigate to="/merch" replace />} />
+        {Object.entries(resourcePages).map(([path, data]) => <Route key={path} path={path.slice(1)} element={<ResourceDetailPage data={data} />} />)}
         {Object.entries(detailPages).map(([path, data]) => <Route key={path} path={path.slice(1)} element={<DetailPage data={data} />} />)}
       </Route>
     </Routes>
@@ -461,20 +582,41 @@ function NewsPage() {
 }
 
 function ResourcesPage() {
-  const resources = [
-    [FileText, "FAQs", "Straight answers to common legalization and regulation questions."],
-    [FileText, "Fact Sheets", "Plain-language policy materials for community conversations."],
-    [ChartNoAxesColumnIncreasing, "Reports", "Research on public health, jobs, tax impact, and enforcement."],
-    [Landmark, "State Laws", "Current Alabama cannabis statutes and proposed reforms."],
-    [CalendarDays, "Legislative Tracker", "Monitor bills, hearings, votes, and opportunities to be heard."],
-    [ShieldCheck, "How Regulation Works", "Testing, licensing, age controls, and consumer protections."],
-  ];
   return (
     <>
       <InnerHero eyebrow="GET THE FACTS" title="Resources For Better Policy" intro="Explore practical, reliable information about safe cannabis regulation and what reform means for Alabama." />
       <section className="container resource-grid">
-        {resources.map(([Icon, title, text]) => <article className="resource-card" key={title}><Icon /><h2>{title}</h2><p>{text}</p><button>OPEN RESOURCE <ArrowRight size={14} /></button></article>)}
+        {resourceCards.map(({ icon: Icon, title, text, route }) => (
+          <article className="resource-card" key={title}>
+            <Icon />
+            <h2>{title}</h2>
+            <p>{text}</p>
+            <Link to={route}><button type="button">OPEN RESOURCE <ArrowRight size={14} /></button></Link>
+          </article>
+        ))}
       </section>
+    </>
+  );
+}
+
+function ResourceDetailPage({ data }) {
+  return (
+    <>
+      <InnerHero eyebrow={data.eyebrow} title={data.title} intro={data.intro} />
+      <section className="container resource-summary">
+        <p>{data.summary}</p>
+      </section>
+      <section className="container detail-grid resource-detail-grid">
+        {data.sections.map(({ title, text }) => <article className="resource-card" key={title}><h2>{title}</h2><p>{text}</p></article>)}
+      </section>
+      <section className="container faq-layout resource-takeaways">
+        <div><p className="eyebrow">KEY TAKEAWAYS</p><h2>What To Remember</h2><p>Use these points when sharing resources, preparing testimony, or speaking with local officials.</p></div>
+        <div className="faq-list">{data.takeaways.map((takeaway) => <details open key={takeaway}><summary>{takeaway}</summary><p>Keep the focus on facts, safety, transparency, and accountable state oversight.</p></details>)}</div>
+      </section>
+      <section className="container detail-grid source-grid">
+        {data.sources.map(([label, href]) => <article className="resource-card" key={href}><h2>{label}</h2><p>Primary reference for verifying current language, rules, or bill status.</p><a className="resource-link" href={href} target="_blank" rel="noreferrer">OPEN SOURCE <ArrowRight size={14} /></a></article>)}
+      </section>
+      <PageCta />
     </>
   );
 }
